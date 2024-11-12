@@ -7,16 +7,13 @@ const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
   const forgotPasswordHandler = async (e) => {
     e.preventDefault();
-
     try {
       const { data } = await axios.post(
         "/auth/forgotpassword",
         { email }
       );
-
       setSuccess(data.message);
     } catch (error) {
       setError(error.response.data.error);
@@ -26,10 +23,8 @@ const ForgotPasswordScreen = () => {
       }, 5000);
     }
   };
-
   return (
     <div className="Inclusive-forgotPassword-page">
-
       <div className="forgotPassword-big-wrapper">
         <Link to="/" className="back_home">
           <BsArrowBarLeft />
@@ -44,13 +39,10 @@ const ForgotPasswordScreen = () => {
               will send you reset password confirmation to this email
             </p>
           </div>
-
           {error && <div className="error_message">{error}</div>}
           {success && <div className="success_message  ">{success}  -
             <Link to="/" className="ml-3">Go home</Link></div>}
-
           <div className="input-wrapper">
-
             <input
               type="email"
               required
@@ -60,20 +52,13 @@ const ForgotPasswordScreen = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="email">E-mail</label>
-
           </div>
-
           <button type="submit">
             Send Email
           </button>
-
         </form>
-
       </div>
-
     </div>
-
   );
 };
-
 export default ForgotPasswordScreen;
